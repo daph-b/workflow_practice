@@ -22,6 +22,7 @@ resource "google_compute_instance" "default" {
   
   network_interface {
     network = google_compute_network.vpc_network.name
+    subnetwork = google_compute_subnetwork.subnet.name
   }
 
   metadata = {
@@ -35,7 +36,7 @@ resource "google_compute_network" "vpc_network" {
   auto_create_subnetworks = "false"
 }
 
-resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" {
+resource "google_compute_subnetwork" "subnet" {
   name          = "test-subnetwork"
   ip_cidr_range = "10.2.0.0/16"
   region        = "us-central1"
